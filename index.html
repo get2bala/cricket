@@ -9,12 +9,17 @@
   <button id="callFunction">Call Edge Function</button>
   <p id="result"></p>
 
-  <script>
-    document.getElementById('callFunction').onclick = async () => {
-      const response = await fetch('https://azfipkxegjydpalygjxx.supabase.co/functions/v1/get-cricket-score');
-      const data = await response.text();
-      document.getElementById('result').textContent = data;
-    }
-  </script>
+<script>
+  document.getElementById('callFunction').onclick = async () => {
+    const response = await fetch('https://YOUR-PROJECT-NAME.supabase.co/functions/v1/hello', {
+      headers: {
+        'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF6Zmlwa3hlZ2p5ZHBhbHlnanh4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUxNTQ4OTgsImV4cCI6MjA2MDczMDg5OH0.u_itSrBff5Y5jtT8ozPWGmsLF9Zq3aCXBtwiMPVIOvQ'
+      }
+    });
+    const data = await response.text();
+    document.getElementById('result').textContent = data;
+  }
+</script>
+
 </body>
 </html>
