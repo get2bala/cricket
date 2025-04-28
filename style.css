@@ -1,33 +1,270 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 30px;
+/* Define variables for easier theme management */
+:root {
+    --primary-color: #1976D2; /* Blue */
+    --primary-dark-color: #1565C0; /* Darker Blue */
+    --secondary-color: #ff9800; /* Orange (for pause/resume) */
+    --secondary-dark-color: #f57c00; /* Darker Orange */
+    --light-gray-color: #f4f4f4;
+    --medium-gray-color: #ccc;
+    --dark-gray-color: #555;
+    --text-color: #333;
+    --background-color: #fff;
+    --error-color: #d32f2f; /* Red */
+    --success-color: #388e3c; /* Green */
+    --success-dark-color: #2e7d32; /* Darker Green */
+    --font-family: 'Roboto', Arial, sans-serif; /* Use a cleaner font */
+    --container-width: 600px;
+    --border-radius: 5px;
+    --spacing-unit: 10px;
   }
   
-  input, button, label {
-    margin-top: 10px;
-    display: block;
+  body {
+    font-family: var(--font-family);
+    margin: 0; /* Remove default margin */
+    padding: calc(var(--spacing-unit) * 3); /* Add padding */
+    background-color: var(--light-gray-color); /* Lighter background */
+    color: var(--text-color);
+    line-height: 1.6;
   }
   
-  .slider-container {
-    margin-top: 20px;
+  .container {
+    max-width: var(--container-width);
+    margin: 0 auto; /* Center the content */
+    background-color: var(--background-color);
+    padding: calc(var(--spacing-unit) * 3);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Add subtle shadow */
   }
   
+  h1 {
+      text-align: center;
+      color: var(--primary-dark-color);
+      margin-bottom: calc(var(--spacing-unit) * 3);
+      font-weight: 700; /* Bolder heading */
+  }
+  
+  h2 {
+      margin-top: calc(var(--spacing-unit) * 3);
+      margin-bottom: var(--spacing-unit);
+      border-bottom: 1px solid var(--medium-gray-color);
+      padding-bottom: calc(var(--spacing-unit) / 2);
+      color: var(--primary-color);
+      font-weight: 500; /* Medium weight */
+  }
+  
+  /* Form styling */
+  form {
+      margin-bottom: calc(var(--spacing-unit) * 2);
+  }
+  
+  fieldset {
+      border: 1px solid var(--medium-gray-color);
+      border-radius: var(--border-radius);
+      padding: calc(var(--spacing-unit) * 2);
+      margin-bottom: calc(var(--spacing-unit) * 2);
+  }
+  
+  legend {
+      font-weight: 500; /* Medium weight */
+      padding: 0 calc(var(--spacing-unit));
+      color: var(--dark-gray-color);
+      font-size: 1.1rem;
+  }
+  
+  /* Input, button, label common styles */
+  label {
+    display: block; /* Ensure label is above input */
+    margin-bottom: calc(var(--spacing-unit) / 2);
+    font-weight: 500; /* Medium weight */
+    color: var(--dark-gray-color);
+  }
+  
+  input[type="text"],
+  input[type="range"],
   button {
-    padding: 10px 20px;
-    background-color: #1976D2;
-    color: white;
-    border: none;
+    margin-top: calc(var(--spacing-unit) / 2); /* Space below label */
+    margin-bottom: calc(var(--spacing-unit) * 1.5); /* Consistent bottom margin */
+    width: 100%; /* Make text input and button full width by default */
+    box-sizing: border-box; /* Include padding and border in width */
+  }
+  
+  input[type="text"] {
+    padding: var(--spacing-unit);
+    border: 1px solid var(--medium-gray-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+  }
+  
+  input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.3); /* Focus indicator */
+  }
+  
+  /* Slider specific styles */
+  .slider-container {
+    margin-bottom: calc(var(--spacing-unit) * 2); /* Add space below sliders */
+  }
+  
+  input[type="range"] {
+    padding: 0; /* Remove default padding */
+    cursor: pointer;
+    accent-color: var(--primary-color); /* Easy way to color sliders in modern browsers */
+    height: 8px; /* Optional: Adjust slider height */
+    appearance: none; /* Override default look */
+    background: var(--light-gray-color); /* Track background */
     border-radius: 5px;
+    outline: none;
+  }
+  /* Style slider thumb */
+  input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--primary-color);
+    border-radius: 50%;
     cursor: pointer;
   }
+  input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+  }
   
-  button:hover {
-    background-color: #1565C0;
+  
+  /* Style the value display spans next to labels */
+  label > span {
+    font-weight: bold;
+    color: var(--primary-color);
+  }
+  
+  /* Action Buttons Styling */
+  .action-buttons {
+    display: flex; /* Align buttons side-by-side */
+    gap: var(--spacing-unit); /* Space between buttons */
+    margin-bottom: calc(var(--spacing-unit) * 1.5); /* Space below buttons */
+  }
+  
+  .action-buttons button {
+    flex-grow: 1; /* Make buttons share space equally */
+    margin-top: 0; /* Remove individual top margin */
+    margin-bottom: 0; /* Remove individual bottom margin */
+    width: auto; /* Override previous full width */
+    padding: var(--spacing-unit) calc(var(--spacing-unit) * 2);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out; /* Smooth effects */
+  }
+  
+  /* Start/Stop button */
+  #start-stop-button {
+      background-color: var(--primary-color);
+  }
+  #start-stop-button:hover:not(:disabled) {
+    background-color: var(--primary-dark-color);
+  }
+  
+  /* Pause/Resume button */
+  #pause-resume-button {
+    background-color: var(--secondary-color); /* Orange color */
+  }
+  #pause-resume-button:hover:not(:disabled) {
+     background-color: var(--secondary-dark-color); /* Darker orange */
+  }
+  
+  /* Generic button disabled state */
+  button:disabled {
+      background-color: var(--medium-gray-color);
+      cursor: not-allowed;
+      opacity: 0.7; /* Make it look more clearly disabled */
+  }
+  
+  
+  /* Score display area */
+  .score-display {
+      margin-top: calc(var(--spacing-unit) * 3);
+      padding: calc(var(--spacing-unit) * 2);
+      background-color: var(--light-gray-color);
+      border-radius: var(--border-radius);
+      border: 1px solid var(--medium-gray-color);
   }
   
   #match-score {
-    margin-top: 20px;
-    font-size: 1.2rem;
-    color: #333;
+    margin-top: 0; /* Reset margin from previous rules */
+    font-size: 1.5rem; /* Make score larger */
+    font-weight: bold;
+    color: var(--primary-dark-color);
+    text-align: center;
+    min-height: 1.5rem; /* Ensure space even when empty */
   }
   
+  /* Status message styling */
+  #status-message {
+      margin-top: var(--spacing-unit);
+      font-size: 0.9rem;
+      min-height: 1.2em; /* Prevent layout shifts when text appears */
+      text-align: center;
+      font-weight: 500; /* Slightly bolder for visibility */
+  }
+  #status-message.error {
+      color: var(--error-color);
+  }
+  #status-message.success {
+      color: var(--success-color);
+  }
+  #status-message.info { /* Optional: for neutral info messages */
+      color: var(--dark-gray-color);
+  }
+  
+  
+  /* Share Section Styling */
+  .share-section {
+      margin-top: calc(var(--spacing-unit) * 3);
+      border: 1px dashed var(--medium-gray-color); /* Dashed border */
+  }
+  
+  #generate-share-link {
+    width: auto; /* Don't make it full width */
+    display: inline-block; /* Align with text input */
+    margin-right: var(--spacing-unit);
+    margin-bottom: var(--spacing-unit); /* Add space below button */
+    background-color: var(--success-color); /* Green color */
+    padding: calc(var(--spacing-unit)*0.8) calc(var(--spacing-unit) * 1.5); /* Slightly smaller padding */
+  }
+  #generate-share-link:hover:not(:disabled) {
+    background-color: var(--success-dark-color); /* Darker green */
+  }
+  
+  #share-link-output {
+    width: 100%;
+    box-sizing: border-box;
+    padding: calc(var(--spacing-unit) / 1.5);
+    margin-top: 0;
+    margin-bottom: calc(var(--spacing-unit) / 2);
+    background-color: #e9e9e9; /* Slightly darker background for readonly */
+    border: 1px solid var(--medium-gray-color);
+    font-size: 0.9rem;
+    color: var(--dark-gray-color);
+    cursor: text; /* Indicate it's selectable text */
+    border-radius: var(--border-radius);
+  }
+  
+  /* Utility class for screen reader only text */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }

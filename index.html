@@ -2,35 +2,56 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Live Match Score Announcer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Link to external CSS -->
+  <title>Cricket Score Announcer Pro</title> <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-
-  <!-- Link to external JavaScript -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="config.js"></script>
   <script defer src="script.js"></script>
 </head>
-
 <body>
-  <h1>Live Match Score Announcer</h1>
 
-  <label for="match-url">CricClubs Match URL:</label>
-  <input type="text" id="match-url" placeholder="Enter CricClubs match URL here..." size="50">
+  <div class="container">
+    <h1>Cricket Score Announcer Pro 🏏</h1> <form id="score-form">
+      <fieldset>
+        <legend>Match Details</legend>
+        <label for="match-url">CricClubs Match URL:</label>
+        <input type="text" id="match-url" placeholder="Enter CricClubs match URL here..." required>
+      </fieldset>
 
-  <div class="slider-container">
-    <label for="refresh-rate">Refresh every <span id="refresh-value">15</span> seconds</label>
-    <input type="range" id="refresh-rate" min="5" max="60" value="15">
+      <fieldset>
+        <legend>Monitoring Settings</legend>
+        <div class="slider-container">
+          <label for="refresh-rate">Refresh every <span id="refresh-value">15</span> seconds</label>
+          <input type="range" id="refresh-rate" min="5" max="600" step="5" value="15" aria-labelledby="refresh-rate-label">
+          <span id="refresh-rate-label" class="sr-only">Refresh rate in seconds</span>
+        </div>
+
+        <div class="slider-container">
+          <label for="watch-duration">Monitor for <span id="watch-value">10</span> minutes</label> <input type="range" id="watch-duration" min="1" max="60" value="10" aria-labelledby="watch-duration-label">
+           <span id="watch-duration-label" class="sr-only">Monitoring duration in minutes</span>
+        </div>
+      </fieldset>
+
+      <div class="action-buttons">
+          <button type="button" id="start-stop-button">Start Monitoring</button> <button type="button" id="pause-resume-button" disabled>Pause</button> </div>
+
+      <p id="status-message" aria-live="polite"></p>
+    </form>
+
+    <div class="score-display">
+        <h2>Current Match Score:</h2>
+        <p id="match-score">Waiting for setup...</p> </div>
+
+    <fieldset class="share-section">
+        <legend>Share Settings</legend>
+        <button type="button" id="generate-share-link">Generate Shareable Link</button>
+        <label for="share-link-output" class="sr-only">Shareable Link:</label>
+        <input type="text" id="share-link-output" placeholder="Click 'Generate' to create a link with current settings..." readonly>
+    </fieldset>
+
   </div>
 
-  <div class="slider-container">
-    <label for="watch-duration">Watch for <span id="watch-value">10</span> minutes</label>
-    <input type="range" id="watch-duration" min="1" max="60" value="10">
-  </div>
-
-  <button id="start-button">Start Announcing Score</button>
-
-  <h2>Current Match Score:</h2>
-  <p id="match-score">Waiting for input...</p>
 </body>
 </html>
