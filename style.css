@@ -1,0 +1,33 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+  }
+  
+  input, button, label {
+    margin-top: 10px;
+    display: block;
+  }
+  
+  .slider-container {
+    margin-top: 20px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #1976D2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #1565C0;
+  }
+  
+  #match-score {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  

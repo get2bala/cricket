@@ -2,25 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Test Supabase Edge Function</title>
+  <title>Live Match Score Announcer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Link to external JavaScript -->
+  <script defer src="script.js"></script>
 </head>
+
 <body>
-  <h1>Test Supabase Edge Function</h1>
-  <button id="callFunction">Call Edge Function</button>
-  <p id="result"></p>
+  <h1>Live Match Score Announcer</h1>
 
-  <script>
-    document.getElementById('callFunction').onclick = async () => {
-      const response = await fetch('https://azfipkxegjydpalygjxx.supabase.co/functions/v1/get-cricket-score', {
-        method: 'GET',
-        headers: {
-          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF6Zmlwa3hlZ2p5ZHBhbHlnanh4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUxNTQ4OTgsImV4cCI6MjA2MDczMDg5OH0.u_itSrBff5Y5jtT8ozPWGmsLF9Zq3aCXBtwiMPVIOvQ'
-        }
-      });
-      const data = await response.text();
-      document.getElementById('result').textContent = data;
-    }
-</script>
+  <label for="match-url">CricClubs Match URL:</label>
+  <input type="text" id="match-url" placeholder="Enter CricClubs match URL here..." size="50">
 
+  <div class="slider-container">
+    <label for="refresh-rate">Refresh every <span id="refresh-value">15</span> seconds</label>
+    <input type="range" id="refresh-rate" min="5" max="60" value="15">
+  </div>
+
+  <div class="slider-container">
+    <label for="watch-duration">Watch for <span id="watch-value">10</span> minutes</label>
+    <input type="range" id="watch-duration" min="1" max="60" value="10">
+  </div>
+
+  <button id="start-button">Start Announcing Score</button>
+
+  <h2>Current Match Score:</h2>
+  <p id="match-score">Waiting for input...</p>
 </body>
 </html>
