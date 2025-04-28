@@ -14,6 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const shareLinkOutput = document.getElementById("share-link-output");
     const settingsFieldset = document.querySelector('fieldset:nth-of-type(2)');
     const matchDetailsFieldset = document.querySelector('fieldset:nth-of-type(1)');
+    const isIphone = /iPhone/i.test(navigator.userAgent);
+    const isAndroid = /Android/i.test(navigator.userAgent);
+
+    // Add touchstart listener for iPhone and Android
+    if (isIphone || isAndroid) {
+        document.addEventListener('touchstart', () => {
+            // Your speakScore function can be called here with the score
+            speakScore("100/5"); // Example score, replace with dynamic score
+        }, { once: true });
+    }
 
     // --- State Variables ---
     let isMonitoringActive = false;
