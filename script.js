@@ -17,6 +17,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const isIphone = /iPhone/i.test(navigator.userAgent);
     const isAndroid = /Android/i.test(navigator.userAgent);
 
+    // Inside DOMContentLoaded
+const testButton = document.getElementById('test-speak');
+if (testButton) {
+    testButton.addEventListener('click', () => {
+         console.log("Test Speak button clicked");
+         try {
+             const utterance = new SpeechSynthesisUtterance("Hello from iPhone");
+             utterance.lang = 'en-US';
+             window.speechSynthesis.speak(utterance);
+             console.log("Speech synthesis initiated.");
+         } catch (e) {
+             console.error("Test speech failed:", e);
+         }
+    });
+}
     // Add touchstart listener for iPhone and Android
     if (isIphone || isAndroid) {
         document.addEventListener('touchstart', () => {
