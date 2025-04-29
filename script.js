@@ -17,21 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const isIphone = /iPhone/i.test(navigator.userAgent);
     const isAndroid = /Android/i.test(navigator.userAgent);
 
-    // Inside DOMContentLoaded
-const testButton = document.getElementById('test-speak');
-if (testButton) {
-    testButton.addEventListener('click', () => {
-         console.log("Test Speak button clicked");
-         try {
-             const utterance = new SpeechSynthesisUtterance("Hello from iPhone");
-             utterance.lang = 'en-US';
-             window.speechSynthesis.speak(utterance);
-             console.log("Speech synthesis initiated.");
-         } catch (e) {
-             console.error("Test speech failed:", e);
-         }
-    });
-}
     // Add touchstart listener for iPhone and Android
     if (isIphone || isAndroid) {
         document.addEventListener('touchstart', () => {
@@ -103,7 +88,7 @@ if (testButton) {
         // Otherwise, textToSpeak remains the original trimmed score
 
         try {
-            // window.speechSynthesis.cancel(); // Stop previous speech
+            window.speechSynthesis.cancel(); // Stop previous speech
             const utterance = new SpeechSynthesisUtterance(textToSpeak); // Use the potentially modified text
             utterance.lang = 'en-US'; // Or 'en-IN', 'en-GB' as preferred
             utterance.pitch = 1;
